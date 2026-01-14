@@ -136,6 +136,13 @@ Alice finishes her job.
 
 ## Postman Apis for clearer understanding
 
+[Postman Apis](https://sai-sreekar-int-297043.postman.co/workspace/insurance-claim~7589b6dc-df4a-4f96-913c-5a7bf64f7d90/collection/51303689-a478e7d3-65c1-44b1-bd1a-cfc0750048e6?action=share&creator=51303689&active-environment=51303689-a42bee5b-d470-45ff-ad82-593e0ea23b8c)
+
+**Please note:** Environment variables :- 
+
+Endpoint: `localhost:8080/api/claims`
+
+Policies: `localhost:8080/api/policies`
 
 
 
