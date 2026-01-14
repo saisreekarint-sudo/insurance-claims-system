@@ -1,6 +1,6 @@
 # 🛡️ Insurance Claims Processing System
 
-A robust, enterprise-grade Spring Boot backend for managing the entire lifecycle of insurance claims—from policy validation to final settlement.
+A Spring Boot backend application for managing the entire lifecycle of insurance claims—from policy validation to final settlement.
 
 # Assumptions Made for the assignemt
 `Policy Table: I have made a dummy policy table containing number of policies for the claims to exist`
