@@ -45,7 +45,7 @@ public class GlobalExceptionHandler {
     }
 
     // 4. Handle "No Endpoint Hit" (Wrong URL) -> 404
-    // Note: Requires config in application.properties (see Step 5)
+    // Note: Requires config in application.properties
     @ExceptionHandler(NoHandlerFoundException.class)
     public ResponseEntity<Map<String, String>> handleNoHandlerFound(NoHandlerFoundException ex) {
         Map<String, String> error = new HashMap<>();
@@ -63,7 +63,7 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
     }
     // Handle Database Constraint Violations (e.g., Deleting a policy that has claims)
-    // Handle Database Constraints (Duplicate Email, Foreign Keys, etc.)
+    // Handle Database Constraints (Duplicate Email, Foreign Keys, etc.) Delete anamoly
     @ExceptionHandler(org.springframework.dao.DataIntegrityViolationException.class)
     public ResponseEntity<Map<String, String>> handleSQLViolation(Exception ex) {
         Map<String, String> error = new HashMap<>();

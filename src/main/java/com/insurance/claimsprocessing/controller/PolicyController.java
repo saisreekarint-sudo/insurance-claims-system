@@ -25,8 +25,6 @@ public class PolicyController {
         return policyRepository.findAll();
     }
 
-
-
     // 2. CREATE A NEW POLICY
     @PostMapping
     public Policy createPolicy(@Valid @RequestBody Policy policy) {

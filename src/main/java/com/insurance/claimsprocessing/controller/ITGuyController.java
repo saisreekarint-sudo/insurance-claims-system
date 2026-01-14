@@ -18,13 +18,14 @@ public class ITGuyController {
         this.itGuyRepository = itGuyRepository;
     }
 
-    // 1. GET ALL IT GUYS (See who is Busy/Available)
+    // 1. GET ALL IT GUYS (See who is Busy/Available) Also you can see the claim they are handling
+    //if any (claim number is displayed against it)
     @GetMapping
     public ResponseEntity<List<ITGuy>> getAllITGuys() {
         return ResponseEntity.ok(itGuyRepository.findAll());
     }
 
-    // 2. HIRE NEW IT GUY (Add via Postman)
+   // Add a new IT guy
     @PostMapping
     public ResponseEntity<ITGuy> hireITGuy(@RequestBody ITGuy itGuy) {
         // Default to AVAILABLE if they forget to set it
@@ -34,8 +35,7 @@ public class ITGuyController {
         return ResponseEntity.ok(itGuyRepository.save(itGuy));
     }
 
-    // 3. (BONUS) RESET BUTTON: Make everyone AVAILABLE again
-    // Useful if you want to re-run your demo from scratch!
+    // You can manually make them all available
     @PutMapping("/reset")
     public ResponseEntity<String> resetWorkforce() {
         List<ITGuy> allGuys = itGuyRepository.findAll();
@@ -45,13 +45,13 @@ public class ITGuyController {
         itGuyRepository.saveAll(allGuys);
         return ResponseEntity.ok("All IT Guys are now marked as AVAILABLE.");
     }
-    // 5. FIRE IT GUY (Delete by ID)
+    // Remove an IT guy by his ID
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> fireITGuy(@PathVariable Long id) {
         ITGuy guy = itGuyRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("IT Guy not found"));
 
-        // SAFETY CHECK: Don't fire them if they are in the middle of a job!
+        // SAFETY CHECK: Cannot delete an entry when it is attached to a claim (Delete anomoly)
         if (guy.getStatus() == ITGuyStatus.BUSY) {
             throw new RuntimeException("Cannot remove " + guy.getName() + " while they are BUSY with a claim.");
         }

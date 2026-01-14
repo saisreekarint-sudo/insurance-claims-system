@@ -15,7 +15,7 @@ public class ClaimRequest {
     private String claimType; // Note: You might need to change this to String if it was Enum in DTO
 
     @NotNull(message = "Claim Amount is required")
-    @Min(value = 0, message = "Claim Amount cannot be negative") // <-- This fixes your negative number issue
+    @Min(value = 0, message = "Claim Amount cannot be negative") //edge cases
     private Double claimAmount;
 
     @NotBlank(message = "Description is required")

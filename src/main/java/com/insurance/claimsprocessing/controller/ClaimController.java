@@ -31,20 +31,20 @@ public class ClaimController {
         Claim newClaim = claimService.registerClaim(request);
         return ResponseEntity.ok(newClaim);
     }
-    //change the status
-    // 2. UPDATE STATUS (Now requires IT Guy Name)
+
+    // 2. UPDATE STATUS (Requires IT Guy Name)
     @PatchMapping("/{claimNumber}/status")
     public ResponseEntity<Claim> updateStatus(
             @PathVariable String claimNumber,
             @RequestParam com.insurance.claimsprocessing.enums.ClaimStatus status,
-            @RequestParam String itGuyName) { // <--- NEW PARAMETER
+            @RequestParam String itGuyName) {
 
         Claim updatedClaim = claimService.updateClaimStatus(claimNumber, status, itGuyName);
         return ResponseEntity.ok(updatedClaim);
     }
 
-    // 3. SETTLE CLAIM (Now requires IT Guy Name)
-    // 3. SETTLE CLAIM (Amount is now Optional)
+    // 3. SETTLE CLAIM, Requires IT Guy Name && there are actually 2 endpoints
+    // and the settle amount is actually optional to negotiate
     @PutMapping("/{claimNumber}/settle")
     public ResponseEntity<Claim> settleClaim(
             @PathVariable String claimNumber,
@@ -54,7 +54,7 @@ public class ClaimController {
         Claim settledClaim = claimService.settleClaim(claimNumber, amount, requestorName);
         return ResponseEntity.ok(settledClaim);
     }
-    //to get the audit table, end point
+    //to get the audit of a particular claim by it's ID
     @GetMapping("/{claimNumber}/audit")
     public ResponseEntity<List<ClaimAudit>> getAuditLogs(@PathVariable String claimNumber) {
         List<ClaimAudit> logs = auditRepository.findByClaimNumber(claimNumber);

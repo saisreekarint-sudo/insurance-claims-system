@@ -18,7 +18,7 @@ public class Policy {
     @Id
     @Column(nullable = false, unique = true)
     @NotBlank(message = "Policy Number is required")
-   //
+   //Displaying the policy number because we need to know the ID for deleting a policy
     private String policyNumber;
 
     @Column(nullable = false)

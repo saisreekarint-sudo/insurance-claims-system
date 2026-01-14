@@ -141,7 +141,7 @@ public class ClaimService {
         return claimRepository.save(claim);
     }
 
-    // 3. SETTLE CLAIM (Updated for Default Amount)
+    // 3. SETTLE CLAIM
     public Claim settleClaim(String claimNumber, Double settlementAmount, String requestorName) {
         Claim claim = claimRepository.findAll().stream()
                 .filter(c -> c.getClaimNumber().equals(claimNumber))
@@ -161,7 +161,7 @@ public class ClaimService {
             throw new RuntimeException("Only APPROVED claims can be settled. Current status: " + claim.getStatus());
         }
 
-        // --- NEW LOGIC START ---
+
         Double finalAmount;
 
         if (settlementAmount == null) {
@@ -174,7 +174,7 @@ public class ClaimService {
             }
             finalAmount = settlementAmount;
         }
-        // --- NEW LOGIC END ---
+
 
         ClaimStatus oldStatus = claim.getStatus();
 

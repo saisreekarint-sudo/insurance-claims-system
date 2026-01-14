@@ -14,7 +14,3 @@ public class InsuranceClaimsSystemApplication {
 }
 
 
-//remove showing the primary keys
-//make a user table
-//assignment strategy
-//settlement can be manual or it can directly be the claim that is asked
