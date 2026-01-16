@@ -41,7 +41,7 @@ The system follows a layered architecture (Controller -> Service -> Repository).
 
 The system maintains data integrity using Foreign Keys and Unique Constraints.
 
-<img width="4439" height="5263" alt="Untitled diagram-2026-01-14-045519" src="https://github.com/user-attachments/assets/5f71f735-2d1a-4c74-bca7-981dfcb04186" />
+<img width="4439" height="5462" alt="Policy Claims Audit Flow-2026-01-16-063017" src="https://github.com/user-attachments/assets/75a35d7b-368d-4f7d-adb2-5ee61d52e491" />
 
 ---
 
