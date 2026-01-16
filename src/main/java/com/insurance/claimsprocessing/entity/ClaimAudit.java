@@ -29,6 +29,7 @@ public class ClaimAudit {
 
     private String itGuyName; // Stores who performed the action
 
+    private Double settlementAmount;
     @CreationTimestamp
     private LocalDateTime changeDate;
 }

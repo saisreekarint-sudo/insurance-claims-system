@@ -75,7 +75,7 @@ public class ClaimService {
 
         // Save Audit (System action)
         String actor = (assignedGuy != null) ? "SYSTEM (Assigned to " + assignedGuy.getName() + ")" : "SYSTEM";
-        saveAudit(claim.getClaimNumber(), null, claim.getStatus().name(), actor);
+        saveAudit(claim.getClaimNumber(), null, claim.getStatus().name(), actor,0.0);
 
         return claimRepository.save(claim);
     }
@@ -136,7 +136,7 @@ public class ClaimService {
         }
 
         claim.setStatus(newStatus);
-        saveAudit(claimNumber, current.name(), newStatus.name(), requestor.getName());
+        saveAudit(claimNumber, current.name(), newStatus.name(), requestor.getName(),0.0);
 
         return claimRepository.save(claim);
     }
@@ -190,17 +190,18 @@ public class ClaimService {
             itGuyRepository.save(owner);
         }
 
-        saveAudit(claimNumber, oldStatus.name(), ClaimStatus.SETTLED.name(), requestor.getName());
+        saveAudit(claimNumber, oldStatus.name(), ClaimStatus.SETTLED.name(), requestor.getName(),finalAmount);
 
         return claimRepository.save(claim);
     }
 
-    private void saveAudit(String claimNum, String oldSt, String newSt, String actorName) {
+    private void saveAudit(String claimNum, String oldSt, String newSt, String actorName,Double amount) {
         ClaimAudit audit = new ClaimAudit();
         audit.setClaimNumber(claimNum);
         audit.setOldStatus(oldSt);
         audit.setNewStatus(newSt);
         audit.setItGuyName(actorName);
         auditRepository.save(audit);
+        audit.setSettlementAmount(amount);
     }
 }
